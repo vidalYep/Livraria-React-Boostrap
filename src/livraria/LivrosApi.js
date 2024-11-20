@@ -1,6 +1,6 @@
 //É uma boa prática armazenar a URL dentro de uma variável.
 const URL =
-  "https://api-contato-dot-api-samples-423102.uc.r.appspot.com/api/contatos";
+  "https://api-books-dot-api-samples-423102.uc.r.appspot.com/api/books";
 export async function findAll() {
   const requestInit = {
     method: "GET",
@@ -15,6 +15,6 @@ export async function findAll() {
   if (responseHttp.ok) {
     return await responseHttp.json();
   } else {
-    throw new Error("Falha ao consultar os contatos");
+    throw new Error("Falha ao consultar os livros");
   }
 }
