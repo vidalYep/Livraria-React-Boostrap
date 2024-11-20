@@ -2,9 +2,7 @@ export function Header() {
   return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          Livraria Virtual
-        </a>
+        <a class="navbar-brand">Livraria Virtual</a>
         <button
           class="navbar-toggler"
           type="button"

@@ -1,6 +1,10 @@
-import "./styles.css";
-import { Header } from "./Header";
+import { Header } from "./components/Header";
+import {Home} from "./pages/Home"
 
 export default function App() {
-  return <Header />;
+  return (
+    <div className="App">
+      <Home />;
+    </div>
+  );
 }
