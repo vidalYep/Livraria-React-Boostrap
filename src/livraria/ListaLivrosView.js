@@ -12,6 +12,12 @@ export function ListaLivrosView() {
           onClick={async () => {
             const livros = await findAll();
             setLivros(livros);
+            //Maneira para zerar o shelf antes de ser listado
+            const livrosComShelfZerado = livros.map((livro) => ({
+              ...livro,
+              shelf: "none",
+            }));
+            setLivros(livrosComShelfZerado);
           }}
         >
           Consultar Livros
@@ -20,7 +26,7 @@ export function ListaLivrosView() {
       <div className="row g-3">
         {livros.map((l, index) => (
           <div key={index} className="col-sm-12 col-md-6 col-lg-4">
-            <CardLivro title={l.title} authors={l.authors} />
+            <CardLivro title={l.title} authors={l.authors} shelf={l.shelf} />
           </div>
         ))}
       </div>
