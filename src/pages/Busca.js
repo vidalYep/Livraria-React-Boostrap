@@ -2,7 +2,7 @@ import { Header } from "../components/Header";
 export default function Busca() {
   return (
     <div className="Busca">
-      <Header />
+      <Header AlteraBusca="nav-link active" />
     </div>
   );
 }
