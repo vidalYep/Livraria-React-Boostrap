@@ -14,9 +14,13 @@ export function ListaLivrosView() {
       >
         Listar
       </button>
-      {livros.map((l) => (
-        <CardLivro title={l.title} authors={l.authors} />
-      ))}
+      <div className="row g-3">
+        {livros.map((l, index) => (
+          <div key={index} className="col-sm-12 col-md-6 col-lg-4">
+            <CardLivro title={l.title} authors={l.authors} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
