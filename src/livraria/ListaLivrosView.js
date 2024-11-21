@@ -29,7 +29,12 @@ export function ListaLivrosView() {
         <div className="row g-3">
           {livrosFiltrados.map((l, index) => (
             <div key={index} className="col-sm-12 col-md-6 col-lg-4">
-              <CardLivro title={l.title} authors={l.authors} shelf={l.shelf} />
+              <CardLivro
+                title={l.title}
+                authors={l.authors}
+                shelf={l.shelf}
+                thumbnail={l.thumbnail}
+              />
             </div>
           ))}
         </div>

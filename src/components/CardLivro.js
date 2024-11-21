@@ -1,6 +1,7 @@
-export function CardLivro({ title, authors, shelf }) {
+export function CardLivro({ title, authors, shelf, thumbnail }) {
   return (
-    <div className="CardLivro d-flex justify-content-around">
+    <div className="CardLivro d-flex justify-content-center">
+      <img src={thumbnail} />
       <div className="card" style={{ width: "25rem" }}>
         <div className="card-body">
           <h5 className="card-title">{title}</h5>

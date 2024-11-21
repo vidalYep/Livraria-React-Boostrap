@@ -1,4 +1,5 @@
 import { findAll } from "../livraria/LivrosApi";
+import { useState } from "react";
 
 export function ButtonListar({ setLivros }) {
   return (
@@ -7,10 +8,11 @@ export function ButtonListar({ setLivros }) {
         className="btn btn-primary"
         onClick={async () => {
           const livros = await findAll();
-          // Zera o campo shelf antes de listar
           const livrosComShelfZerado = livros.map((livro) => ({
             ...livro,
-            shelf: "None",
+            thumbnail:
+              livro.imageLinks?.thumbnail || "/path/to/default-image.jpg",
+            shelf: "none", // Resetando a estante
           }));
           setLivros(livrosComShelfZerado);
         }}
