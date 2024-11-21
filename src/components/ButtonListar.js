@@ -10,9 +10,9 @@ export function ButtonListar({ setLivros }) {
           // Zera o campo shelf antes de listar
           const livrosComShelfZerado = livros.map((livro) => ({
             ...livro,
-            shelf: "none",
+            shelf: "None",
           }));
-          setLivros(livrosComShelfZerado); // Atualiza o estado do componente pai
+          setLivros(livrosComShelfZerado);
         }}
       >
         Consultar Livros
