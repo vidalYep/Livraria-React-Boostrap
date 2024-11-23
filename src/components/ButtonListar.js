@@ -11,7 +11,7 @@ export function ButtonListar({ setLivros }) {
           const livrosComShelfZerado = livros.map((livro) => ({
             ...livro,
             thumbnail: livro.imageLinks?.thumbnail,
-            shelf: "none", // Resetando a estante
+            shelf: "None", // Resetando a estante
           }));
           setLivros(livrosComShelfZerado);
         }}

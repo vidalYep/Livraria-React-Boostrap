@@ -37,6 +37,7 @@ export function ListaLivrosView() {
                 language={l.language}
                 categories={l.categories}
                 averageRating={l.averageRating}
+                id={l.id}
               />
             </div>
           ))}
