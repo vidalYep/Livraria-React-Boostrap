@@ -30,10 +30,13 @@ export function ListaLivrosView() {
           {livrosFiltrados.map((l, index) => (
             <div key={index} className="col-sm-12 col-md-6 col-lg-4">
               <CardLivro
+                thumbnail={l.thumbnail}
                 title={l.title}
                 authors={l.authors}
                 shelf={l.shelf}
-                thumbnail={l.thumbnail}
+                language={l.language}
+                categories={l.categories}
+                averageRating={l.averageRating}
               />
             </div>
           ))}
