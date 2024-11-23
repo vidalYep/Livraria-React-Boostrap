@@ -4,7 +4,7 @@ export function CardLivro({
   shelf,
   thumbnail = "https://via.placeholder.com/150",
   language = "Idioma não especificado",
-  categories = "Categorias não definidas",
+  categories = "Categoria não definida",
   averageRating = "Média não disponível",
 }) {
   return (
@@ -23,12 +23,23 @@ export function CardLivro({
           </h5>
           <p className="card-text">Autor(es): {authors}</p>
           <p className="card-text">Linguagem: {language}</p>
-          <p className="card-text">Categorias: {categories}</p>
+          <p className="card-text">Categoria(s): {categories}</p>
           <p className="card-text">Média de avaliação: {averageRating}</p>
-
-          <a href="#" className="btn btn-primary">
-            See Profile
-          </a>
+          <p className="card-text">{shelf}</p>
+          <h6 className="text-center">
+            Clique para alterar o livro de estante
+          </h6>
+          <div className="d-flex justify-content-around">
+            <a href="#" className="btn btn-primary">
+              Quero ler
+            </a>
+            <a href="#" className="btn btn-primary">
+              Estou Lendo
+            </a>
+            <a href="#" className="btn btn-primary">
+              Já lido
+            </a>
+          </div>
         </div>
       </div>
     </div>
