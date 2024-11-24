@@ -1,22 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export function CardLivro({
   id,
   title,
   authors,
-  shelf: initialShelf = "none",
+  shelf: initialShelf = "none", // O valor original vindo da API
   thumbnail = "https://via.placeholder.com/150",
   language = "Idioma não especificado",
   categories = "Categoria não definida",
   averageRating = "Média não disponível",
   comments,
 }) {
-  const [shelf, setShelf] = useState(initialShelf); // Estado para o shelf
+  const [shelf, setShelf] = useState(() => {
+    // Tenta buscar o valor de shelf do localStorage, se não existir, usa o valor default
+    const savedShelf = localStorage.getItem(`shelf-${id}`);
+    return savedShelf ? savedShelf : initialShelf; // Retorna o valor salvo ou o valor da API
+  });
 
-  // Função para atualizar o estado com base no botão clicado
+  // Função para atualizar o estado e salvar a alteração no localStorage
   const handleShelfChange = (newShelf) => {
     setShelf(newShelf);
+    // Salva o novo valor de shelf no localStorage com a chave específica do livro (id)
+    localStorage.setItem(`shelf-${id}`, newShelf);
   };
+
+  useEffect(() => {
+    // Garantir que o shelf seja sincronizado com o localStorage ao carregar o componente
+    localStorage.setItem(`shelf-${id}`, shelf);
+  }, [id, shelf]);
 
   return (
     <div className="CardLivro d-flex justify-content-center">
