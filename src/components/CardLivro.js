@@ -5,10 +5,10 @@ export function CardLivro({
   title,
   authors,
   shelf, // O valor de shelf do livro
-  thumbnail,
-  language,
-  categories,
-  averageRating,
+  thumbnail = "https://via.placeholder.com/150",
+  language = "Idioma não especificado",
+  categories = "Categoria não definida",
+  averageRating = "Média não disponível",
   atualizarShelf,
   mostrarBotoes,
 }) {
