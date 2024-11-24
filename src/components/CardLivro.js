@@ -9,6 +9,7 @@ export function CardLivro({
   language = "Idioma não especificado",
   categories = "Categoria não definida",
   averageRating = "Média não disponível",
+  comments,
 }) {
   const [shelf, setShelf] = useState(initialShelf); // Estado para o shelf
 
@@ -96,6 +97,7 @@ export function CardLivro({
             {shelf}
           </p>
           <p className="card-text">{id}</p>
+          <p className="card-text">{comments}</p>
 
           <h6 className="text-center m-4">
             Clique para alterar o livro de estante:

@@ -15,10 +15,10 @@ export function ListaLivrosView() {
       </div>
 
       <div className="d-flex justify-content-center m-3">
-        <div class="search">
+        <div class="search col-lg-6">
           <input
             type="text"
-            className="form-control search-input"
+            className="form-control form-control-lg w-100 search-input"
             placeholder="Digite o título do livro..."
             value={termoBusca}
             onChange={(e) => setTermoBusca(e.target.value)}
@@ -38,6 +38,7 @@ export function ListaLivrosView() {
                 categories={l.categories}
                 averageRating={l.averageRating}
                 id={l.id}
+                comments={l.comments}
               />
             </div>
           ))}
