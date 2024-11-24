@@ -4,9 +4,7 @@ export function Header({ AlteraHome = "", AlteraBusca = "" }) {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand text-primary" href="/">
-          Livraria Virtual
-        </a>
+        <a className="navbar-brand text-primary">Livraria Virtual</a>
         <button
           className="navbar-toggler"
           type="button"

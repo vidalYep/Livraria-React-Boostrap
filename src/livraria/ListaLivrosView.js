@@ -5,17 +5,43 @@ import { ButtonListar } from "../components/ButtonListar";
 export function ListaLivrosView() {
   const [livros, setLivros] = useState([]);
   const [termoBusca, setTermoBusca] = useState("");
-  const livrosFiltrados = livros.filter((livro) =>
-    livro.title.toLowerCase().includes(termoBusca.toLowerCase())
+  const [shelfFiltro, setShelfFiltro] = useState("");
+
+  // Atualiza a estante (shelf) de um livro específico
+  const atualizarShelf = (id, newShelf) => {
+    setLivros((prevLivros) =>
+      prevLivros.map((livro) =>
+        livro.id === id ? { ...livro, shelf: newShelf } : livro
+      )
+    );
+    localStorage.setItem(`shelf-${id}`, newShelf); // Também salva no localStorage
+  };
+
+  // Atualizar os livros com os valores de shelf do localStorage
+  const livrosComShelf = livros.map((livro) => {
+    const localShelf = localStorage.getItem(`shelf-${livro.id}`);
+    return {
+      ...livro,
+      shelf: localShelf || livro.shelf || "none",
+    };
+  });
+
+  // Filtrar livros por título e shelf
+  const livrosFiltrados = livrosComShelf.filter(
+    (livro) =>
+      livro.title.toLowerCase().includes(termoBusca.toLowerCase()) &&
+      (shelfFiltro === "" || livro.shelf === shelfFiltro)
   );
+
   return (
     <div className="ListaLivrosView">
       <div className="d-flex justify-content-center m-3">
         <ButtonListar setLivros={setLivros} />
       </div>
 
+      {/* Input de busca por título */}
       <div className="d-flex justify-content-center m-3">
-        <div class="search col-lg-6">
+        <div className="search col-lg-6">
           <input
             type="text"
             className="form-control form-control-lg w-100 search-input"
@@ -25,27 +51,43 @@ export function ListaLivrosView() {
           />
         </div>
       </div>
+
+      {/* Filtro por shelf */}
+      <div className="d-flex justify-content-center m-3">
+        <select
+          className="form-select col-lg-6"
+          value={shelfFiltro}
+          onChange={(e) => setShelfFiltro(e.target.value)}
+        >
+          <option value="">Todas as estantes</option>
+          <option value="Quero ler">Quero ler</option>
+          <option value="Estou lendo">Estou lendo</option>
+          <option value="Já lido">Já lido</option>
+        </select>
+      </div>
+
+      {/* Exibição de livros filtrados */}
       {livrosFiltrados.length > 0 ? (
         <div className="row g-3">
-          {livrosFiltrados.map((l, index) => (
-            <div key={index} className="col-sm-12 col-md-6 col-lg-4">
+          {livrosFiltrados.map((l) => (
+            <div key={l.id} className="col-sm-12 col-md-6 col-lg-4">
               <CardLivro
+                id={l.id}
                 thumbnail={l.thumbnail}
                 title={l.title}
                 authors={l.authors}
-                shelf={l.shelf}
+                shelf={l.shelf} // Passa o valor atual de shelf
                 language={l.language}
                 categories={l.categories}
                 averageRating={l.averageRating}
-                id={l.id}
-                comments={l.comments}
+                atualizarShelf={atualizarShelf} // Função para atualizar a shelf
               />
             </div>
           ))}
         </div>
       ) : (
         <div className="d-flex justify-content-center m-3">
-          <p className="text-muted">Nenhum livro encontrado com esse título.</p>
+          <p className="text-muted">Nenhum livro encontrado.</p>
         </div>
       )}
     </div>

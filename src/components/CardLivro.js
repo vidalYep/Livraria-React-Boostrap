@@ -1,33 +1,24 @@
-import React, { useState, useEffect } from "react";
-
+import { useState } from "react";
 export function CardLivro({
   id,
   title,
   authors,
-  shelf: initialShelf = "none", // O valor original vindo da API
+  shelf: initialShelf = "none",
   thumbnail = "https://via.placeholder.com/150",
   language = "Idioma não especificado",
   categories = "Categoria não definida",
   averageRating = "Média não disponível",
-  comments,
+  atualizarShelf, // Função passada pelo componente pai
 }) {
   const [shelf, setShelf] = useState(() => {
-    // Tenta buscar o valor de shelf do localStorage, se não existir, usa o valor default
     const savedShelf = localStorage.getItem(`shelf-${id}`);
-    return savedShelf ? savedShelf : initialShelf; // Retorna o valor salvo ou o valor da API
+    return savedShelf ? savedShelf : initialShelf;
   });
 
-  // Função para atualizar o estado e salvar a alteração no localStorage
   const handleShelfChange = (newShelf) => {
-    setShelf(newShelf);
-    // Salva o novo valor de shelf no localStorage com a chave específica do livro (id)
-    localStorage.setItem(`shelf-${id}`, newShelf);
+    setShelf(newShelf); // Atualiza o estado local do componente
+    atualizarShelf(id, newShelf); // Notifica o pai sobre a mudança
   };
-
-  useEffect(() => {
-    // Garantir que o shelf seja sincronizado com o localStorage ao carregar o componente
-    localStorage.setItem(`shelf-${id}`, shelf);
-  }, [id, shelf]);
 
   return (
     <div className="CardLivro d-flex justify-content-center">
@@ -44,71 +35,27 @@ export function CardLivro({
               }}
             />
           </div>
-          <h4
-            className="card-title text-center m-3"
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-            }}
-          >
-            {title}
-          </h4>
+          <h4 className="card-title text-center m-3">{title}</h4>
           <p className="card-text">
-            <span
-              className="text-highlight"
-              style={{
-                fontWeight: "bold",
-              }}
-            >
-              Autor(es):{" "}
-            </span>
+            <b>Autor(es): </b>
             {authors}
           </p>
           <p className="card-text">
-            <span
-              className="text-highlight"
-              style={{
-                fontWeight: "bold",
-              }}
-            >
-              Linguagem:{" "}
-            </span>
+            <b>Linguagem: </b>
             {language}
           </p>
           <p className="card-text">
-            <span
-              className="text-highlight"
-              style={{
-                fontWeight: "bold",
-              }}
-            >
-              Categoria(s):{" "}
-            </span>
+            <b>Categoria(s): </b>
             {categories}
           </p>
           <p className="card-text">
-            <span
-              className="text-highlight"
-              style={{
-                fontWeight: "bold",
-              }}
-            >
-              Média de avaliação:{" "}
-            </span>
+            <b>Média de avaliação: </b>
             {averageRating}
           </p>
           <p className="card-text">
-            <span
-              className="text-highlight"
-              style={{
-                fontWeight: "bold",
-              }}
-            >
-              Estante atual:{" "}
-            </span>
+            <b>Estante atual: </b>
             {shelf}
           </p>
-          <p className="card-text">{id}</p>
-          <p className="card-text">{comments}</p>
 
           <h6 className="text-center m-4">
             Clique para alterar o livro de estante:
@@ -124,7 +71,7 @@ export function CardLivro({
               className="btn btn-primary flex-grow-1 mx-2"
               onClick={() => handleShelfChange("Estou lendo")}
             >
-              Estou Lendo
+              Estou lendo
             </button>
             <button
               className="btn btn-primary flex-grow-1 mx-2"
