@@ -15,28 +15,26 @@ export default function Home() {
         <ButtonListar setLivros={setLivros} />
       </div>
 
-      {/* Estante de livros já lidos */}
       <Estantes
         IcoEstante={require("../assets/jalido.png")}
         TitleEstante={"Estante de livros já li:"}
-        livros={livros} // Passa os livros para o componente
-        shelf="Já lido" // Filtro para "Já lido"
+        livros={livros}
+        shelf="Já lido"
+        mostrarBotoes={false} // Oculta os botões
       />
-
-      {/* Estante de livros que estou lendo */}
       <Estantes
         IcoEstante={require("../assets/lendo.png")}
         TitleEstante={"Estante de livros que estou lendo:"}
-        livros={livros} // Passa os livros para o componente
-        shelf="Estou lendo" // Filtro para "Estou lendo"
+        livros={livros}
+        shelf="Estou lendo"
+        mostrarBotoes={false} // Oculta os botões
       />
-
-      {/* Estante de livros que quero ler */}
       <Estantes
         IcoEstante={require("../assets/queroler.png")}
         TitleEstante={"Estante de livros que quero ler:"}
-        livros={livros} // Passa os livros para o componente
-        shelf="Quero ler" // Filtro para "Quero ler"
+        livros={livros}
+        shelf="Quero ler"
+        mostrarBotoes={false} // Oculta os botões
       />
     </div>
   );

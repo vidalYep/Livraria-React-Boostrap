@@ -5,7 +5,6 @@ import { ButtonListar } from "../components/ButtonListar";
 export function ListaLivrosView() {
   const [livros, setLivros] = useState([]);
   const [termoBusca, setTermoBusca] = useState("");
-  const [shelfFiltro, setShelfFiltro] = useState("");
 
   // Atualiza a estante (shelf) de um livro específico
   const atualizarShelf = (id, newShelf) => {
@@ -26,11 +25,9 @@ export function ListaLivrosView() {
     };
   });
 
-  // Filtrar livros por título e shelf
-  const livrosFiltrados = livrosComShelf.filter(
-    (livro) =>
-      livro.title.toLowerCase().includes(termoBusca.toLowerCase()) &&
-      (shelfFiltro === "" || livro.shelf === shelfFiltro)
+  // Filtrar livros apenas por título
+  const livrosFiltrados = livrosComShelf.filter((livro) =>
+    livro.title.toLowerCase().includes(termoBusca.toLowerCase())
   );
 
   return (
@@ -52,20 +49,6 @@ export function ListaLivrosView() {
         </div>
       </div>
 
-      {/* Filtro por shelf */}
-      <div className="d-flex justify-content-center m-3">
-        <select
-          className="form-select col-lg-6"
-          value={shelfFiltro}
-          onChange={(e) => setShelfFiltro(e.target.value)}
-        >
-          <option value="">Todas as estantes</option>
-          <option value="Quero ler">Quero ler</option>
-          <option value="Estou lendo">Estou lendo</option>
-          <option value="Já lido">Já lido</option>
-        </select>
-      </div>
-
       {/* Exibição de livros filtrados */}
       {livrosFiltrados.length > 0 ? (
         <div className="row g-3">
@@ -81,6 +64,7 @@ export function ListaLivrosView() {
                 categories={l.categories}
                 averageRating={l.averageRating}
                 atualizarShelf={atualizarShelf} // Função para atualizar a shelf
+                mostrarBotoes={true} // Exibe os botões
               />
             </div>
           ))}
