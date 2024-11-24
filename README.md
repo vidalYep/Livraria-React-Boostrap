@@ -41,11 +41,21 @@ npm start
 
 Isso abrirá o projeto em http://localhost:3000 no seu navegador.
 
+## Como Usar?
 
-## Estrutura do Projeto
+**Acesse a página de Busca:** Comece navegando até a página de busca, onde você pode explorar e pesquisar livros.
+
+**Adicione os Livros às Estantes:** Ao encontrar os livros que deseja, basta adicionar cada um deles à estante correspondente com o clique de um botão. Você pode escolher entre as opções: "Quero ler", "Estou lendo", ou "Já lido".
+
+**Volte à Home e Consulte suas Estantes:** Após adicionar os livros às suas estantes, retorne à página inicial (Home). Todos os livros que você adicionou serão automaticamente exibidos nas estantes apropriadas, permitindo que você acompanhe sua jornada de leitura!
+
+### Estrutura do Projeto
 **src/**: Contém os arquivos fonte do projeto.
+
 **components/:** Componentes reutilizáveis como CardLivro, Estantes, Header, etc.
+
 **pages/:** Páginas como Home, Buscar, etc.
+
 **assets/:** Imagens e ícones utilizados na aplicação.
 
 ### Demonstração
